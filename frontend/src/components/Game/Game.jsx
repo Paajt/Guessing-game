@@ -26,13 +26,13 @@ export default function Game() {
     <div>
       {!gameStarted ? (
         <form onSubmit={startGame}>
-          <h2>Choose Settings</h2>
+          <h2>Choose Settings:</h2>
 
           <label>
-            Amount of letters in word: {wordLength}
+            Amount of letters in word: {wordLength} letters
             <input
               type="range"
-              min="3"
+              min="2"
               max="8"
               value={wordLength}
               onChange={(e) => setWordLength(Number(e.target.value))}
