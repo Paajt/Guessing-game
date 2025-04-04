@@ -1,5 +1,10 @@
+.h2-header {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
 form {
-  padding-top: 6rem;
+  padding-top: 4rem;
   font-size: 2rem;
   text-align: center;
 }
@@ -7,6 +12,7 @@ form {
 input[type="range"] {
   width: 200px;
   margin-left: 1rem;
+  text-align: center;
 }
 
 input[type="checkbox"] {
@@ -15,6 +21,16 @@ input[type="checkbox"] {
   height: 1.5rem;
 }
 
+input[type="text"] {
+  text-align: center;
+  font-weight: bold;
+}
+
 p {
   text-align: center;
+}
+
+Button {
+  width: 8rem;
+  height: 3.2rem;
 }

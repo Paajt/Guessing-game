@@ -1,6 +1,7 @@
 import "./game.css";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
+import feedback from "../../utils/feedback.js";
 
 async function loadWordsFromTxt() {
   const response = await fetch("/words_eng.txt");
@@ -20,6 +21,8 @@ export default function Game() {
   const [wordLength, setWordLength] = useState(4);
   const [allowDuplicates, setAllowDuplicates] = useState(true);
   const [targetWord, setTargetWord] = useState("");
+  const [guess, setGuess] = useState("");
+  const [guesses, setGuesses] = useState([]);
 
   async function startGame(e) {
     e.preventDefault();
@@ -52,11 +55,27 @@ export default function Game() {
     console.log("Chosen word:", randomWord);
   }
 
+  function handleGuessSubmit(e) {
+    e.preventDefault();
+
+    if (guess.length !== wordLength) {
+      alert(`Guess must be exacly ${wordLength} letters.`);
+      return;
+    }
+
+    const result = feedback(guess.toUpperCase(), targetWord);
+    console.log("Guess:", guess.toUpperCase());
+    console.log("Feedback:", result);
+
+    setGuesses([...guesses, result]);
+    setGuess("");
+  }
+
   return (
     <div className="Bg">
       {!gameStarted ? (
         <form onSubmit={startGame}>
-          <h2>Choose Settings:</h2>
+          <h2 className="h2-header">Choose Settings:</h2>
 
           <label>
             Amount of letters in word:
@@ -88,7 +107,29 @@ export default function Game() {
           </Button>
         </form>
       ) : (
-        <p>Game below here</p>
+        <div>
+          <form onSubmit={handleGuessSubmit}>
+            <p className="p-margin">
+              Guess the word (<strong>{wordLength} letters</strong>)
+            </p>
+            <input
+              type="text"
+              value={guess}
+              onChange={(e) => setGuess(e.target.value.toUpperCase())}
+              maxLength={wordLength}
+              placeholder="Your guess"
+            />
+            <p>
+              {guess.length === wordLength
+                ? `Letters: ${guess.length} ☑️`
+                : `Letters: ${guess.length} ⚠️`}
+            </p>
+            <br />
+            <Button type="submit" variant="primary">
+              Guess
+            </Button>
+          </form>
+        </div>
       )}
     </div>
   );
