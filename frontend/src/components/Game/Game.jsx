@@ -72,7 +72,7 @@ export default function Game() {
   }
 
   return (
-    <div className="Bg">
+    <main className="Bg">
       {!gameStarted ? (
         <form onSubmit={startGame}>
           <h2 className="h2-header">Choose Settings:</h2>
@@ -105,12 +105,22 @@ export default function Game() {
           <Button variant="success" type="submit">
             Start game
           </Button>
+          <div className="buttons">
+            <Button variant="info">Info</Button>
+            <Button variant="primary">Back to menu</Button>
+            <Button variant="warning">Highscore</Button>
+          </div>
         </form>
       ) : (
         <div>
           <form onSubmit={handleGuessSubmit}>
-            <p className="p-margin">
+            <p>
               Guess the word (<strong>{wordLength} letters</strong>)
+            </p>
+            <p>
+              {allowDuplicates === true
+                ? "Duplicate letters is on ✅"
+                : "Duplicate letters is off ❌"}
             </p>
             <input
               type="text"
@@ -124,13 +134,32 @@ export default function Game() {
                 ? `Letters: ${guess.length} ☑️`
                 : `Letters: ${guess.length} ⚠️`}
             </p>
-            <br />
             <Button type="submit" variant="primary">
               Guess
             </Button>
           </form>
+          {guesses.length >= 0 && (
+            <div className="guess-grid">
+              {guesses.map((feedbackRow, rowIndex) => (
+                <div className="guess-row" key={rowIndex}>
+                  {feedbackRow.map((item, i) => (
+                    <span key={i} className={`tile ${item.result}`}>
+                      {item.letter}
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
+          <footer>
+            <div className="buttons">
+              <Button variant="info">Info</Button>
+              <Button variant="success"> Play again</Button>
+              <Button variant="warning">Highscore</Button>
+            </div>
+          </footer>
         </div>
       )}
-    </div>
+    </main>
   );
 }

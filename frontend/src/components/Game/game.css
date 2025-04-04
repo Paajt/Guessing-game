@@ -34,3 +34,48 @@ Button {
   width: 8rem;
   height: 3.2rem;
 }
+
+/* GAME BOARD: */
+.guess-grid {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  height: 15rem;
+}
+
+.guess-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tile {
+  width: 40px;
+  height: 40px;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 40px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+.tile.correct {
+  background-color: #6aaa64;
+  color: white;
+  border-color: #6aaa64;
+}
+
+.tile.misplaced {
+  background-color: #c9b458;
+  color: white;
+  border-color: #c9b458;
+}
+
+.tile.incorrect {
+  background-color: #787c7e;
+  color: white;
+  border-color: #787c7e;
+}
