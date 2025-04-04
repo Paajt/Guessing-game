@@ -19,7 +19,7 @@ async function loadWordsFromTxt() {
 export default function Game() {
   const [gameStarted, setGameStarted] = useState(false);
   const [wordLength, setWordLength] = useState(4);
-  const [allowDuplicates, setAllowDuplicates] = useState(true);
+  const [allowDuplicates, setAllowDuplicates] = useState(false);
   const [targetWord, setTargetWord] = useState("");
   const [guess, setGuess] = useState("");
   const [guesses, setGuesses] = useState([]);
@@ -69,6 +69,13 @@ export default function Game() {
 
     setGuesses([...guesses, result]);
     setGuess("");
+  }
+
+  function resetGame() {
+    setGameStarted(false);
+    setTargetWord("");
+    setGuess("");
+    setGuesses([]);
   }
 
   return (
@@ -154,7 +161,9 @@ export default function Game() {
           <footer>
             <div className="buttons">
               <Button variant="info">Info</Button>
-              <Button variant="success"> Play again</Button>
+              <Button variant="success" onClick={resetGame}>
+                Play again
+              </Button>
               <Button variant="warning">Highscore</Button>
             </div>
           </footer>
