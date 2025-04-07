@@ -1,8 +1,23 @@
+.winModal {
+  top: -20%;
+  transform: translateY(-30%);
+}
+
 .modal-header {
   flex-direction: column-reverse;
+  font-weight: bold;
 }
 
 .modal-title {
   text-align: center;
   font-weight: bold;
+}
+
+div.modal-footer {
+  justify-content: space-evenly;
+}
+
+.btn.btn-warning {
+  font-size: 1rem;
+  padding: 0;
 }

@@ -1,6 +1,9 @@
+html {
+  height: 100vh;
+}
+
 body {
   font-family: "Comic Neue", sans-serif, arial;
-  height: 100vh;
   background-image: linear-gradient(#43a9a4, #245351);
 }
 
@@ -27,7 +30,6 @@ p {
   margin: 4rem auto;
   max-width: 40rem; /* Might change */
   background-color: #c7f9e1;
-  height: 90vh;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }

@@ -3,7 +3,13 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 
-export default function WinModal({ show, onClose, attempts, onSave }) {
+export default function WinModal({
+  show,
+  onClose,
+  attempts,
+  onSave,
+  onPlayAgain,
+}) {
   const [playerName, setPlayerName] = useState("");
 
   function handleSave() {
@@ -11,8 +17,19 @@ export default function WinModal({ show, onClose, attempts, onSave }) {
     setPlayerName("");
   }
 
+  function handlePlayAgain() {
+    onClose();
+    onPlayAgain();
+  }
+
   return (
-    <Modal show={show} onHide={onClose} centered>
+    <Modal
+      show={show}
+      onHide={onClose}
+      centered
+      backdrop="static"
+      dialogClassName="winModal"
+    >
       <Modal.Header closeButton>
         <Modal.Title>🌟YOU GUESSED CORRECT!🌟</Modal.Title>
       </Modal.Header>
@@ -30,8 +47,11 @@ export default function WinModal({ show, onClose, attempts, onSave }) {
         />
       </Modal.Body>
       <Modal.Footer>
+        <Button variant="success" onClick={handlePlayAgain}>
+          Play again
+        </Button>
         <Button
-          variant="success"
+          variant="warning"
           onClick={handleSave}
           disabled={playerName.trim() === ""}
         >

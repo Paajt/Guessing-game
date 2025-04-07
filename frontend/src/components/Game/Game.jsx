@@ -194,6 +194,7 @@ export default function Game() {
           setShowModal(false);
           resetGame();
         }}
+        onPlayAgain={resetGame}
       />
     </main>
   );
