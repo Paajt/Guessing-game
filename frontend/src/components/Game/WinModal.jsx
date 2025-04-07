@@ -2,15 +2,22 @@ import "./winModal.css";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
+import { formatTime } from "../../utils/formatTime";
 
 export default function WinModal({
   show,
   onClose,
   attempts,
+  elapsedTime,
   onSave,
   onPlayAgain,
 }) {
   const [playerName, setPlayerName] = useState("");
+
+  const formattedTime =
+    elapsedTime !== null && elapsedTime !== undefined
+      ? formatTime(elapsedTime)
+      : "–";
 
   function handleSave() {
     onSave(playerName);
@@ -37,6 +44,9 @@ export default function WinModal({
         <p>
           You guessed the word in <strong>{attempts}</strong>
           {attempts === 1 ? " attempt" : " attempts"}!
+        </p>
+        <p>
+          Time taken: <strong>{formattedTime}</strong>
         </p>
         <input
           type="text"

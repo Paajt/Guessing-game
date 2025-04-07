@@ -1,6 +1,6 @@
 import "./game.css";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import feedback from "../../utils/feedback.js";
 import WinModal from "./WinModal.jsx";
 
@@ -26,6 +26,14 @@ export default function Game() {
   const [guesses, setGuesses] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [attempts, setAttempts] = useState(0);
+  const [startTime, setStartTime] = useState(null);
+  const [elapsedTime, setElapsedTime] = useState(null);
+
+  useEffect(() => {
+    if (elapsedTime !== null) {
+      setShowModal(true);
+    }
+  }, [elapsedTime]);
 
   async function startGame(e) {
     e.preventDefault();
@@ -56,6 +64,9 @@ export default function Game() {
     setTargetWord(randomWord);
     setGameStarted(true);
     console.log("Chosen word:", randomWord);
+
+    setStartTime(Date.now());
+    setElapsedTime(null);
   }
 
   function handleGuessSubmit(e) {
@@ -77,7 +88,9 @@ export default function Game() {
     setGuess("");
 
     if (result.every((item) => item.result === "correct")) {
-      setShowModal(true);
+      const endTime = Date.now();
+      const duration = Math.floor((endTime - startTime) / 1000);
+      setElapsedTime(duration);
     }
   }
 
@@ -184,10 +197,12 @@ export default function Game() {
         show={showModal}
         onClose={() => setShowModal(false)}
         attempts={attempts}
+        elapsedTime={elapsedTime}
         onSave={(name) => {
           console.log("Save this:", {
             name,
             attempts,
+            time: elapsedTime,
             word: targetWord,
             date: new Date().toISOString(),
           });
