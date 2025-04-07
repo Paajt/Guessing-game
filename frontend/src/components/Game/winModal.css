@@ -21,3 +21,8 @@ div.modal-footer {
   font-size: 1rem;
   padding: 0;
 }
+
+.btn.btn-warning:disabled {
+  background-color: gray;
+  border-color: gray;
+}
