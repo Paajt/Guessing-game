@@ -1,0 +1,8 @@
+.modal-header {
+  flex-direction: column-reverse;
+}
+
+.modal-title {
+  text-align: center;
+  font-weight: bold;
+}

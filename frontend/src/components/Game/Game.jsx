@@ -2,6 +2,7 @@ import "./game.css";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import feedback from "../../utils/feedback.js";
+import WinModal from "./WinModal.jsx";
 
 async function loadWordsFromTxt() {
   const response = await fetch("/words_eng.txt");
@@ -23,6 +24,8 @@ export default function Game() {
   const [targetWord, setTargetWord] = useState("");
   const [guess, setGuess] = useState("");
   const [guesses, setGuesses] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [attempts, setAttempts] = useState(0);
 
   async function startGame(e) {
     e.preventDefault();
@@ -59,7 +62,7 @@ export default function Game() {
     e.preventDefault();
 
     if (guess.length !== wordLength) {
-      alert(`Guess must be exacly ${wordLength} letters.`);
+      alert(`Guess must be exactly ${wordLength} letters.`);
       return;
     }
 
@@ -67,8 +70,15 @@ export default function Game() {
     console.log("Guess:", guess.toUpperCase());
     console.log("Feedback:", result);
 
-    setGuesses([...guesses, result]);
+    const updatedGuesses = [...guesses, result];
+    setGuesses(updatedGuesses);
+    setAttempts(updatedGuesses.length);
+
     setGuess("");
+
+    if (result.every((item) => item.result === "correct")) {
+      setShowModal(true);
+    }
   }
 
   function resetGame() {
@@ -76,6 +86,7 @@ export default function Game() {
     setTargetWord("");
     setGuess("");
     setGuesses([]);
+    setAttempts(0);
   }
 
   return (
@@ -169,6 +180,21 @@ export default function Game() {
           </footer>
         </div>
       )}
+      <WinModal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        attempts={attempts}
+        onSave={(name) => {
+          console.log("Save this:", {
+            name,
+            attempts,
+            word: targetWord,
+            date: new Date().toISOString(),
+          });
+          setShowModal(false);
+          resetGame();
+        }}
+      />
     </main>
   );
 }
