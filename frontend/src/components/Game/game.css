@@ -26,6 +26,14 @@ input[type="text"] {
   font-weight: bold;
 }
 
+.guess-error {
+  color: red;
+  font-size: 1rem;
+  display: block;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
 p {
   text-align: center;
 }

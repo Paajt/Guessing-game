@@ -1,6 +1,6 @@
 import "./game.css";
 import Button from "react-bootstrap/Button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import feedback from "../../utils/feedback.js";
 import WinModal from "./WinModal.jsx";
 
@@ -18,6 +18,7 @@ async function loadWordsFromTxt() {
 }
 
 export default function Game() {
+  //useState
   const [gameStarted, setGameStarted] = useState(false);
   const [wordLength, setWordLength] = useState(4);
   const [allowDuplicates, setAllowDuplicates] = useState(false);
@@ -28,12 +29,23 @@ export default function Game() {
   const [attempts, setAttempts] = useState(0);
   const [startTime, setStartTime] = useState(null);
   const [elapsedTime, setElapsedTime] = useState(null);
+  const [guessError, setGuessError] = useState("");
 
+  //useRef
+  const guessGridRef = useRef(null);
+
+  //useEffect
   useEffect(() => {
     if (elapsedTime !== null) {
       setShowModal(true);
     }
   }, [elapsedTime]);
+
+  useEffect(() => {
+    if (guessGridRef.current) {
+      guessGridRef.current.scrollTop = guessGridRef.current.scrollHeight;
+    }
+  }, [guesses]);
 
   async function startGame(e) {
     e.preventDefault();
@@ -73,9 +85,16 @@ export default function Game() {
     e.preventDefault();
 
     if (guess.length !== wordLength) {
-      alert(`Guess must be exactly ${wordLength} letters.`);
+      setGuessError(`Guess must be exactly ${wordLength} letters`);
       return;
     }
+
+    if (!/^[A-Z]+$/.test(guess)) {
+      setGuessError("Only letters A-Z are allowed!");
+      return;
+    }
+
+    setGuessError("");
 
     const result = feedback(guess.toUpperCase(), targetWord);
     console.log("Guess:", guess.toUpperCase());
@@ -160,6 +179,7 @@ export default function Game() {
               maxLength={wordLength}
               placeholder="Your guess"
             />
+            {guessError && <p className="guess-error">{guessError}</p>}
             <p>
               {guess.length === wordLength
                 ? `Letters: ${guess.length} ☑️`
@@ -170,7 +190,7 @@ export default function Game() {
             </Button>
           </form>
           {guesses.length >= 0 && (
-            <div className="guess-grid">
+            <div className="guess-grid" ref={guessGridRef}>
               {guesses.map((feedbackRow, rowIndex) => (
                 <div className="guess-row" key={rowIndex}>
                   {feedbackRow.map((item, i) => (
