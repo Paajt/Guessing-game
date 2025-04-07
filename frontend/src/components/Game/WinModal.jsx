@@ -32,7 +32,7 @@ export default function WinModal({
   return (
     <Modal
       show={show}
-      onHide={onClose}
+      onHide={handlePlayAgain}
       centered
       backdrop="static"
       dialogClassName="winModal"
