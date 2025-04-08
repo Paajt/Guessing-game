@@ -4,19 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import feedback from "../../utils/feedback.js";
 import WinModal from "./WinModal.jsx";
 
-async function loadWordsFromTxt() {
-  const response = await fetch("/words_eng.txt");
-  const text = await response.text();
-
-  const words = text
-    .split("\n")
-    .map((w) => w.trim())
-    .filter((w) => /^[a-zA-Z]+$/.test(w))
-    .map((w) => w.toUpperCase());
-
-  return words;
-}
-
 export default function Game() {
   //useState
   const [gameStarted, setGameStarted] = useState(false);
@@ -50,36 +37,59 @@ export default function Game() {
   async function startGame(e) {
     e.preventDefault();
 
-    const words = await loadWordsFromTxt();
-    console.log("Number of total words loaded:", words.length);
+    try {
+      const res = await fetch(
+        `/api/word?length=${wordLength}&duplicates=${allowDuplicates}`
+      );
+      const data = await res.json();
 
-    const filtered = words.filter((word) => {
-      if (word.length !== wordLength) return false;
-      if (!allowDuplicates) {
-        const uniqueLetters = new Set(word);
-        if (uniqueLetters.size !== word.length) return false;
+      if (!data.word) {
+        alert("No word returned from server!");
+        return;
       }
-      return true;
-    });
-    console.log("Amount of letters chosen:", wordLength);
-    console.log("Allow duplicates?", allowDuplicates);
-    console.log("Number of words after filtering:", filtered.length);
-    console.log("Preview:", filtered.slice(0, 10));
 
-    if (filtered.length === 0) {
-      alert("No words found with chosen settings!");
-      return;
+      setTargetWord(data.word);
+      setGameStarted(true);
+      setStartTime(Date.now());
+      setElapsedTime(null);
+
+      console.log("Fetched word:", data.word);
+    } catch (err) {
+      console.error("Failed to fetch word:", err);
+      alert("Could not start game - check connection to backend!");
     }
-
-    const randomWord = filtered[Math.floor(Math.random() * filtered.length)];
-
-    setTargetWord(randomWord);
-    setGameStarted(true);
-    console.log("Chosen word:", randomWord);
-
-    setStartTime(Date.now());
-    setElapsedTime(null);
   }
+
+  //   const words = await loadWordsFromTxt();
+  //   console.log("Number of total words loaded:", words.length);
+
+  //   const filtered = words.filter((word) => {
+  //     if (word.length !== wordLength) return false;
+  //     if (!allowDuplicates) {
+  //       const uniqueLetters = new Set(word);
+  //       if (uniqueLetters.size !== word.length) return false;
+  //     }
+  //     return true;
+  //   });
+  //   console.log("Amount of letters chosen:", wordLength);
+  //   console.log("Allow duplicates?", allowDuplicates);
+  //   console.log("Number of words after filtering:", filtered.length);
+  //   console.log("Preview:", filtered.slice(0, 10));
+
+  //   if (filtered.length === 0) {
+  //     alert("No words found with chosen settings!");
+  //     return;
+  //   }
+
+  //   const randomWord = filtered[Math.floor(Math.random() * filtered.length)];
+
+  //   setTargetWord(randomWord);
+  //   setGameStarted(true);
+  //   console.log("Chosen word:", randomWord);
+
+  //   setStartTime(Date.now());
+  //   setElapsedTime(null);
+  // }
 
   function handleGuessSubmit(e) {
     e.preventDefault();
