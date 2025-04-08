@@ -119,6 +119,7 @@ export default function Game() {
     setGuess("");
     setGuesses([]);
     setAttempts(0);
+    setAllowDuplicates(false);
   }
 
   return (
@@ -218,10 +219,12 @@ export default function Game() {
         onClose={() => setShowModal(false)}
         attempts={attempts}
         elapsedTime={elapsedTime}
+        allowDuplicates={allowDuplicates}
         onSave={(name) => {
           console.log("Save this:", {
             name,
             attempts,
+            allowDuplicates,
             time: elapsedTime,
             word: targetWord,
             date: new Date().toISOString(),
