@@ -1,11 +1,10 @@
 import express from "express";
+import wordRoutes from "./routes/wordRoutes.js";
 
 const app = express();
 const PORT = 5080;
 
-app.get("/api/ping", (req, res) => {
-  res.json({ message: "pong" });
-});
+app.use("/api/word", wordRoutes);
 
 app.listen(PORT, () => {
   console.log(`Backend is running on localhost:${PORT}`);
