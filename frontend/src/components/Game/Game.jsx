@@ -123,6 +123,30 @@ export default function Game() {
     }
   }
 
+  function handleSaveHighscore(name) {
+    fetch("/api/highscore", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        attempts,
+        time: elapsedTime,
+        wordLength,
+        allowDuplicates,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Highscore saved!", data);
+      })
+      .catch((err) => {
+        console.error("Error saving highscore:", err);
+      });
+
+    setShowModal(false);
+    resetGame();
+  }
+
   function resetGame() {
     setGameStarted(false);
     setTargetWord("");
@@ -230,18 +254,7 @@ export default function Game() {
         attempts={attempts}
         elapsedTime={elapsedTime}
         allowDuplicates={allowDuplicates}
-        onSave={(name) => {
-          console.log("Save this:", {
-            name,
-            attempts,
-            allowDuplicates,
-            time: elapsedTime,
-            word: targetWord,
-            date: new Date().toISOString(),
-          });
-          setShowModal(false);
-          resetGame();
-        }}
+        onSave={handleSaveHighscore}
         onPlayAgain={resetGame}
       />
     </main>
