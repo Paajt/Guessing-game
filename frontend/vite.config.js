@@ -11,6 +11,8 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      "/highscores": "http://localhost:5080",
+      "/styles": "http://localhost:5080",
     },
   },
 });

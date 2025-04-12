@@ -1,6 +1,7 @@
 <div class="Bg container mt-5 p-4">
   <h2 class="h2-header text-center">Leaderboard</h2>
-
+  
+<div class="highscore-scroll-wrapper">
   {{#if scores.length}}
     <table class="table table-bordered table-striped text-center mt-4">
       <thead class="table-dark">
@@ -24,6 +25,7 @@
         {{/each}}
       </tbody>
     </table>
+</div>
   {{else}}
     <p class="text-center mt-3">No highscores yet!</p>
   {{/if}}

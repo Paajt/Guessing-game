@@ -193,7 +193,9 @@ export default function Game() {
           <div className="buttons">
             <Button variant="info">Info</Button>
             <Button variant="primary">Back to menu</Button>
-            <Button variant="warning">Highscore</Button>
+            <a href="/highscores" className="btn btn-warning" id="btn-warning">
+              Highscores
+            </a>
           </div>
         </form>
       ) : (
@@ -243,7 +245,13 @@ export default function Game() {
               <Button variant="success" onClick={resetGame}>
                 Play again
               </Button>
-              <Button variant="warning">Highscore</Button>
+              <a
+                href="/highscores"
+                className="btn btn-warning"
+                id="btn-warning"
+              >
+                Highscores
+              </a>
             </div>
           </footer>
         </div>
