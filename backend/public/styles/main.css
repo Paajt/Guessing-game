@@ -1,0 +1,169 @@
+html {
+  height: 100vh;
+}
+
+body {
+  font-family: "Comic Neue", sans-serif, arial;
+  background-image: linear-gradient(#43a9a4, #245351);
+}
+
+h1 {
+  text-align: left;
+  margin: 1rem;
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 8rem;
+}
+
+p {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
+
+.Bg {
+  margin: 4rem auto;
+  max-width: 40rem; /* Might change */
+  background-color: #c7f9e1;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.content {
+  text-align: center;
+  font-weight: bold;
+}
+
+.buttons {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+Button {
+  margin: 1rem 2rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.h2-header {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+form {
+  padding-top: 4rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+input[type="range"] {
+  width: 200px;
+  margin-left: 1rem;
+  text-align: center;
+}
+
+input[type="checkbox"] {
+  margin-left: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+input[type="text"] {
+  text-align: center;
+  font-weight: bold;
+}
+
+.guess-error {
+  color: red;
+  font-size: 1rem;
+  display: block;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+Button {
+  width: 8rem;
+  height: 3.2rem;
+}
+
+/* GAME BOARD: */
+.guess-grid {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+  height: 15rem;
+}
+
+.guess-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tile {
+  width: 40px;
+  height: 40px;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 40px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+.tile.correct {
+  background-color: #6aaa64;
+  color: white;
+  border-color: #6aaa64;
+}
+
+.tile.misplaced {
+  background-color: #c9b458;
+  color: white;
+  border-color: #c9b458;
+}
+
+.tile.incorrect {
+  background-color: #787c7e;
+  color: white;
+  border-color: #787c7e;
+}
+
+.winModal {
+  top: -20%;
+  transform: translateY(-30%);
+}
+
+.modal-header {
+  flex-direction: column-reverse;
+  font-weight: bold;
+}
+
+.modal-title {
+  text-align: center;
+  font-weight: bold;
+}
+
+div.modal-footer {
+  justify-content: space-evenly;
+}
+
+.btn.btn-warning {
+  font-size: 1rem;
+  padding: 0;
+}
+
+.btn.btn-warning:disabled {
+  background-color: gray;
+  border-color: gray;
+}

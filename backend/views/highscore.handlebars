@@ -1,0 +1,35 @@
+<div class="Bg container mt-5 p-4">
+  <h2 class="h2-header text-center">Leaderboard</h2>
+
+  {{#if scores.length}}
+    <table class="table table-bordered table-striped text-center mt-4">
+      <thead class="table-dark">
+        <tr>
+          <th>Name</th>
+          <th>Attempts</th>
+          <th>Time (s)</th>
+          <th>Word length</th>
+          <th>Duplicates?</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each scores}}
+          <tr>
+            <td>{{name}}</td>
+            <td>{{attempts}}</td>
+            <td>{{time}}</td>
+            <td>{{wordLength}}</td>
+            <td>{{#if allowDuplicates}}✅{{else}}❌{{/if}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <p class="text-center mt-3">No highscores yet!</p>
+  {{/if}}
+
+  <div class="buttons">
+    <a href="/" class="btn btn-primary">← Back to game</a>
+    <a href="/info" class="btn btn-info">Info about this project</a>
+  </div>
+</div>
