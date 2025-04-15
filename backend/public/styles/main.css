@@ -94,6 +94,14 @@ Button {
   height: 3.2rem;
 }
 
+a.btn {
+  padding-top: 12px;
+  width: 8rem;
+  height: 3.2rem;
+  margin: 1rem 2rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
 /* GAME BOARD: */
 .guess-grid {
   margin-top: 1rem;
