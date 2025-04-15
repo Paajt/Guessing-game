@@ -13,6 +13,7 @@ export default defineConfig({
       },
       "/highscores": "http://localhost:5080",
       "/styles": "http://localhost:5080",
+      "/info": "http://localhost:5080",
     },
   },
 });

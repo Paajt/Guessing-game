@@ -4,6 +4,7 @@ import wordRoutes from "./routes/wordRoutes.js";
 import viewRoutes from "./routes/viewRoutes.js";
 import { connectToDatabase } from "./db/connect.js";
 import highscoreRoutes from "./routes/highscoreRoutes.js";
+import infoRoutes from "./routes/infoRoutes.js";
 
 const app = express();
 const PORT = 5080;
@@ -21,6 +22,8 @@ app.use("/api/word", wordRoutes);
 app.use("/api/highscore", highscoreRoutes);
 
 app.use("/highscores", viewRoutes);
+
+app.use("/info", infoRoutes);
 
 await connectToDatabase();
 

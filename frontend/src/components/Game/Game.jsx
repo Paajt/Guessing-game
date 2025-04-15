@@ -158,6 +158,7 @@ export default function Game() {
 
   return (
     <main className="Bg">
+      <h1>The Word Guessing Game</h1>
       {!gameStarted ? (
         <form onSubmit={startGame}>
           <h2 className="h2-header">Choose Settings:</h2>
@@ -177,7 +178,7 @@ export default function Game() {
 
           <br />
 
-          <label>
+          <label id="label-mgb">
             Allow duplicate letters?
             <input
               type="checkbox"
@@ -191,8 +192,9 @@ export default function Game() {
             Start game
           </Button>
           <div className="buttons">
-            <Button variant="info">Info</Button>
-            <Button variant="primary">Back to menu</Button>
+            <a href="/info" className="btn btn-info" id="btn-info">
+              Project Info
+            </a>
             <a href="/highscores" className="btn btn-warning" id="btn-warning">
               Highscores
             </a>
@@ -206,8 +208,8 @@ export default function Game() {
             </p>
             <p>
               {allowDuplicates === true
-                ? "Duplicate letters is on ✅"
-                : "Duplicate letters is off ❌"}
+                ? "Duplicate letters are on ✅"
+                : "Duplicate letters are off ❌"}
             </p>
             <input
               type="text"
@@ -241,7 +243,9 @@ export default function Game() {
           )}
           <footer>
             <div className="buttons">
-              <Button variant="info">Info</Button>
+              <a href="/info" className="btn btn-info" id="btn-info">
+                Project Info
+              </a>
               <Button variant="success" onClick={resetGame}>
                 Play again
               </Button>

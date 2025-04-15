@@ -8,11 +8,12 @@ body {
 }
 
 h1 {
-  text-align: left;
+  text-align: center;
   margin: 1rem;
-  padding: 1rem;
+  padding: 4rem 1rem 1rem 1rem;
   font-weight: bold;
   font-size: 3rem;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 h2 {
@@ -27,7 +28,7 @@ p {
 }
 
 .Bg {
-  margin: 4rem auto;
+  margin: 3rem auto;
   max-width: 40rem; /* Might change */
   background-color: #c7f9e1;
   border-radius: 15px;
@@ -50,5 +51,9 @@ Button {
 }
 
 #btn-warning {
+  padding: 12px;
+}
+
+#btn-info {
   padding: 12px;
 }
