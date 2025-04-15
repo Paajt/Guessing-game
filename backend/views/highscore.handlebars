@@ -7,9 +7,10 @@
     <table class="table table-bordered table-striped text-center mt-4">
       <thead class="table-dark">
         <tr>
+          <th>Date</th>
           <th>Name</th>
           <th>Attempts</th>
-          <th>Time (s)</th>
+          <th>Time (min:sec)</th>
           <th>Word length</th>
           <th>Duplicates?</th>
         </tr>
@@ -17,9 +18,10 @@
       <tbody>
         {{#each scores}}
           <tr>
+            <td>{{formattedDate}}</td>
             <td>{{name}}</td>
             <td>{{attempts}}</td>
-            <td>{{time}}</td>
+            <td>{{formattedTime}}</td>
             <td>{{wordLength}}</td>
             <td>{{#if allowDuplicates}}✅{{else}}❌{{/if}}</td>
           </tr>

@@ -29,7 +29,7 @@ p {
 
 .Bg {
   margin: 3rem auto;
-  max-width: 40rem; /* Might change */
+  max-width: 50rem; /* Might change */
   background-color: #c7f9e1;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
