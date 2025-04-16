@@ -5,6 +5,8 @@ import viewRoutes from "./routes/viewRoutes.js";
 import { connectToDatabase } from "./db/connect.js";
 import highscoreRoutes from "./routes/highscoreRoutes.js";
 import infoRoutes from "./routes/infoRoutes.js";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
 const PORT = 5080;
@@ -25,8 +27,26 @@ app.use("/highscores", viewRoutes);
 
 app.use("/info", infoRoutes);
 
+// --- Serve built React app ---
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+app.use((req, res, next) => {
+  if (
+    req.path.startsWith("/api") ||
+    req.path.startsWith("/highscores") ||
+    req.path.startsWith("/info")
+  ) {
+    return next();
+  }
+
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
+
 await connectToDatabase();
 
 app.listen(PORT, () => {
-  console.log(`Backend is running on localhost:${PORT}`);
+  console.log(`Backend is running on http://localhost:${PORT}`);
 });
