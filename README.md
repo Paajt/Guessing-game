@@ -10,24 +10,26 @@ Wordle look-alike guessing game built with React, Express and MongoDB.
 npm install
 ```
 
-2. **Build frontend**
+2. **MongoDB**
 
 ```
-npm run build
-```
-
-3. **MongoDB**
    Start MongoDB before running the server.
    If you're using MongoDB Compass or another GUI, make sure the database is available at:
-
-```
-mongodb://localhost:27017/guessing-game
+   mongodb://localhost:27017/guessing-game
 ```
 
-4. **Start the server**
+3. **Start the server**
 
 ```
 npm start
 ```
 
-5. **Visit the app at:** `http://localhost:5080`
+4. **Visit the app at:**
+
+`http://localhost:5080`
+
+5. **Run tests with:**
+
+```
+npm test
+```
