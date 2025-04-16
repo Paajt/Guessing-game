@@ -60,37 +60,6 @@ export default function Game() {
     }
   }
 
-  //   const words = await loadWordsFromTxt();
-  //   console.log("Number of total words loaded:", words.length);
-
-  //   const filtered = words.filter((word) => {
-  //     if (word.length !== wordLength) return false;
-  //     if (!allowDuplicates) {
-  //       const uniqueLetters = new Set(word);
-  //       if (uniqueLetters.size !== word.length) return false;
-  //     }
-  //     return true;
-  //   });
-  //   console.log("Amount of letters chosen:", wordLength);
-  //   console.log("Allow duplicates?", allowDuplicates);
-  //   console.log("Number of words after filtering:", filtered.length);
-  //   console.log("Preview:", filtered.slice(0, 10));
-
-  //   if (filtered.length === 0) {
-  //     alert("No words found with chosen settings!");
-  //     return;
-  //   }
-
-  //   const randomWord = filtered[Math.floor(Math.random() * filtered.length)];
-
-  //   setTargetWord(randomWord);
-  //   setGameStarted(true);
-  //   console.log("Chosen word:", randomWord);
-
-  //   setStartTime(Date.now());
-  //   setElapsedTime(null);
-  // }
-
   function handleGuessSubmit(e) {
     e.preventDefault();
 
