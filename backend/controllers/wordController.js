@@ -6,9 +6,6 @@ export async function getRandomWord(req, res) {
 
   try {
     const words = await loadWords();
-    console.log("Loaded words:", words.length);
-    console.log("Query params:", req.query);
-
     const filtered = words.filter((word) => {
       if (word.length !== length) return false;
       if (!allowDuplicates) {
@@ -17,8 +14,6 @@ export async function getRandomWord(req, res) {
       }
       return true;
     });
-
-    console.log("Filtered words count:", filtered.length);
 
     if (filtered.length === 0) {
       return res

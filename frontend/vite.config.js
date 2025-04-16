@@ -4,16 +4,4 @@ import react from "@vitejs/plugin-react";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://localhost:5080",
-        changeOrigin: true,
-        secure: false,
-      },
-      "/highscores": "http://localhost:5080",
-      "/styles": "http://localhost:5080",
-      "/info": "http://localhost:5080",
-    },
-  },
 });
