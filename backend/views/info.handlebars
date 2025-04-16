@@ -1,7 +1,183 @@
 <div class="Bg container mt-5 p-4">
   <h1>The Word Guessing Game</h1>
   <h2 class="h2-header text-center">About this project</h2>
-  <p>Text goes here</p>
+  <p class="text-center">
+    A fullstack word guessing game built with React, Express and MongoDB – with
+    styling, feedback logic and leaderboard.
+  </p>
+  <section class="mt-4">
+    <h2 class="h2-header">How the Game Works</h2>
+    <ul>
+      <li>This is a Wordle-inspired guessing game</li>
+      <li>You choose:
+        <ul>
+          <li>Word length (2–10 letters)</li>
+          <li>Whether duplicate letters are allowed</li>
+        </ul>
+      </li>
+      <li>Words are selected randomly from a large English word list</li>
+      <li>You guess by typing in a text field</li>
+      <li>
+        Each letter in guessed word is color-coded:
+        <ul>
+          <li>Green: Correct position</li>
+          <li>Yellow: Wrong position</li>
+          <li>Gray: Not in the word</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="mt-2 mb-2 guess-row">
+      <span class="tile incorrect">G</span>
+      <span class="tile misplaced">R</span>
+      <span class="tile incorrect">E</span>
+      <span class="tile correct">E</span>
+      <span class="tile incorrect">N</span>
+    </div>
+    <ul>
+      <li>When you guess the correct word, you can enter your name</li>
+      <li>Your result is saved to a leaderboard</li>
+    </ul>
+  </section>
+
+  <section class="mt-5">
+    <h2 class="h2-header">How It’s Built</h2>
+
+    <h3>Frontend (React)</h3>
+    <ul>
+      <li>React + Vite</li>
+      <li>React Bootstrap for UI components</li>
+      <li>Custom CSS for game styling</li>
+      <li>fetch() used for API calls (get word, send score)</li>
+      <li>Game logic (feedback, state, UI) runs on client</li>
+    </ul>
+
+    <h3>Backend (Express)</h3>
+    <ul>
+      <li>Express server running on port 5080</li>
+      <li>Random word selection from filtered word list</li>
+      <li>Highscores stored with Mongoose in MongoDB</li>
+      <li>Leaderboard and info page rendered with Handlebars</li>
+      <li>Vite is used in development and for bundling the React frontend.</li>
+    </ul>
+  </section>
+
+  <section class="mt-5">
+    <h2 class="h2-header">Technical Details</h2>
+
+    <h3>Frontend</h3>
+    <ul>
+      <li>Built in React with components for game, modal, and styling</li>
+      <li>User chooses word length and duplicate settings via a form</li>
+      <li>When the game starts:
+        <ul>
+          <li>Frontend sends a
+            <code class="codetext">GET</code>
+            request to
+            <code
+              class="codetext"
+            >/api/word?length=...&duplicates=...</code></li>
+          <li>Backend responds with a filtered, random word</li>
+        </ul>
+      </li>
+      <li>Player enters guesses into a controlled text input</li>
+      <li>Each guess is evaluated via a
+        <code class="codetext">feedback()</code>
+        function that marks each letter</li>
+      <li>When the correct word is guessed:
+        <ul>
+          <li>A timer (started on game start) is stopped</li>
+          <li>Player can enter their name to save the result</li>
+        </ul>
+      </li>
+      <li>Frontend sends a
+        <code class="codetext">POST</code>
+        request to
+        <code class="codetext">/api/highscore</code>
+        with:
+        <ul>
+          <li>Name</li>
+          <li>Time taken</li>
+          <li>Number of attempts</li>
+          <li>Word length</li>
+          <li>Duplicate setting</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3>Backend</h3>
+    <ul>
+      <li>Built with Express and serves both API and server-rendered views</li>
+      <li>Handles:
+        <ul>
+          <li><code class="codetext">/api/word</code>
+            – filters the word list and returns a valid word</li>
+          <li><code class="codetext">/api/highscore</code>
+            – saves player result to the database</li>
+          <li><code class="codetext">/highscores</code>
+            – server-side rendered leaderboard using Handlebars</li>
+          <li><code class="codetext">/info</code> – static info page</li>
+        </ul>
+      </li>
+      <li>Formats time (MM:SS) and date (sv-SE) before rendering</li>
+      <li>Shares some logic (like time formatting) with frontend via utility
+        functions</li>
+    </ul>
+
+    <h3>Database</h3>
+    <ul>
+      <li>MongoDB with Mongoose schema for HighScore</li>
+      <li>Each saved score includes:
+        <ul>
+          <li><code class="codetext">name</code>,
+            <code class="codetext">time</code>,
+            <code class="codetext">attempts</code>,
+            <code class="codetext">wordLength</code>,
+            <code class="codetext">allowDuplicates</code>,
+            <code class="codetext">date</code></li>
+        </ul>
+      </li>
+      <li>Leaderboard is sorted by time and attempts on backend</li>
+      <li>Data is retrieved and mapped before rendering (including formatted
+        fields)</li>
+    </ul>
+  </section>
+
+  <section class="mt-5">
+    <h2 class="h2-header">Other small (but awesome) details</h2>
+    <ul>
+      <li>
+        Input field for guesses dynamically reflects the chosen word length:
+        <ul>
+          <li>Shows how many letters are entered vs required</li>
+          <li>Icon changes from ⚠️ to ☑️ based on validity</li>
+        </ul>
+      </li>
+      <li>
+        Only letters A–Z are allowed in the guess field – blocked via RegExp
+        validation
+      </li>
+      <li>
+        Feedback is animated via colored tiles styled with custom classes
+      </li>
+      <li>
+        Result is measured in seconds and displayed as MM:SS on the leaderboard
+      </li>
+      <li>
+        Submission date is formatted to local Swedish date & time
+      </li>
+      <li>
+        Leaderboard and game board are scrollable – no layout breaking!
+      </li>
+      <li>
+        Modal shows when the user wins, with inputs and action buttons
+        <ul><li>User must enter a name before saving to leaderboard</li></ul>
+      </li>
+      <li>
+        All text and design match the rest of the game via shared styles and
+        fonts
+      </li>
+    </ul>
+  </section>
   <div class="buttons">
     <a href="/" class="btn btn-success">Back to game</a>
     <a

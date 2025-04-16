@@ -103,6 +103,12 @@ a.btn {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
+.codetext {
+  padding: 0.1rem;
+  color: black;
+  background-color: white;
+}
+
 /* GAME BOARD: */
 .guess-grid {
   margin-top: 1rem;
