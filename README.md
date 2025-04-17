@@ -19,7 +19,7 @@ npm install
    If you're using MongoDB Compass or another GUI, make sure the database is available at:
 
 ```
-   mongodb://localhost:27017/guessing-game
+mongodb://localhost:27017/guessing-game
 ```
 
 3. **Start the server**
