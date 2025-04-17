@@ -6,6 +6,7 @@ export async function connectToDatabase() {
     console.log("Connected to MongoDB");
   } catch (err) {
     console.error("MongoDB connection error!", err);
+    console.error("Please start MongoDB before running the server!");
     process.exit(1);
   }
 }
