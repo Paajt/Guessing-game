@@ -194,3 +194,10 @@ div.modal-footer {
   color: white;
   z-index: 1;
 }
+
+section,
+ul,
+li {
+  text-align: center;
+  list-style: none;
+}
