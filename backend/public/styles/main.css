@@ -201,3 +201,7 @@ li {
   text-align: center;
   list-style: none;
 }
+
+ul {
+  padding: 0;
+}
