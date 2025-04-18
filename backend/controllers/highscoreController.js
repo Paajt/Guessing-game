@@ -2,13 +2,13 @@ import { HighScore } from "../models/Highscore.js";
 
 export async function saveHighscore(req, res) {
   try {
-    const { name, attempts, time, wordLength, allowDuplicates } = req.body;
+    const { name, attempts, time, targetWord, allowDuplicates } = req.body;
 
     if (
       !name ||
       attempts == null ||
       time == null ||
-      wordLength == null ||
+      !targetWord ||
       allowDuplicates == null
     ) {
       return res.status(400).json({ error: "Missing required fields" });
@@ -18,7 +18,7 @@ export async function saveHighscore(req, res) {
       name,
       attempts,
       time,
-      wordLength,
+      targetWord,
       allowDuplicates,
     });
 

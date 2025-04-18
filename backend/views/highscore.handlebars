@@ -11,7 +11,7 @@
           <th>Name</th>
           <th>Attempts</th>
           <th>Time (min:sec)</th>
-          <th>Word length</th>
+          <th>Word</th>
           <th>Duplicates?</th>
         </tr>
       </thead>
@@ -22,7 +22,7 @@
             <td>{{name}}</td>
             <td>{{attempts}}</td>
             <td>{{formattedTime}}</td>
-            <td>{{wordLength}}</td>
+            <td>{{targetWord}}</td>
             <td>{{#if allowDuplicates}}✅{{else}}❌{{/if}}</td>
           </tr>
         {{/each}}
