@@ -1,6 +1,10 @@
-# Guessing-game
+# The Word Guessing-game
 
-Wordle look-alike guessing game built with React, Express and MongoDB.
+**Wordle look-alike guessing game built with React, Vite, Bootstrap, Express and MongoDB.**  
+For full project description and technical information, see [INFO.md](./INFO.md)
+
+This project also includes a Jest-tested custom-built feedback algorithm used to evaluate each guess.  
+For more information see: [https://github.com/Paajt/Tested-Wordle-Algorithm](https://github.com/Paajt/Tested-Wordle-Algorithm)
 
 ## Instructions
 
