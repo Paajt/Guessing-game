@@ -70,7 +70,7 @@ A fullstack word guessing game built with React, Vite, Bootstrap, custom-CSS, Ex
 
 ### Backend
 
-- Built with Express and serves both API and server-rendered views
+- Built with Node.js and Express, serves both API and server-rendered views
 - Handles:
   - `/api/word` – filters the word list and returns a valid word
   - `/api/highscore` – saves player result to the database

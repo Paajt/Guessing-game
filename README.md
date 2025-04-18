@@ -6,6 +6,11 @@ For full project description and technical information, see [INFO.md](./INFO.md)
 This project also includes a Jest-tested custom-built feedback algorithm used to evaluate each guess.  
 For more information see: [https://github.com/Paajt/Tested-Wordle-Algorithm](https://github.com/Paajt/Tested-Wordle-Algorithm)
 
+## Requirements
+
+- Node.js (v18 or later)
+- MongoDB (running locally)
+
 ## Instructions
 
 1. **Clone repository**
