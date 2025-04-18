@@ -8,7 +8,14 @@ For more information see: [https://github.com/Paajt/Tested-Wordle-Algorithm](htt
 
 ## Instructions
 
-1. **Install dependencies**
+1. **Clone repository**
+
+```
+git clone https://github.com/Paajt/Guessing-game.git
+cd Guessing-game
+```
+
+2. **Install dependencies**
 
 ```
 npm install
@@ -16,7 +23,7 @@ npm install
 
 > This will also automatically build the frontend with Vite.
 
-2. **MongoDB**
+3. **MongoDB**
 
    **_❗_** **_Important:_** **MongoDB must be running before starting the server.**
 
@@ -26,17 +33,17 @@ npm install
 mongodb://localhost:27017/guessing-game
 ```
 
-3. **Start the server**
+4. **Start the server**
 
 ```
 npm start
 ```
 
-4. **Visit the app at:**
+5. **Visit the app at:**
 
 [http://localhost:5080](http://localhost:5080)
 
-5. **Run tests with:**
+**Run tests with:**
 
 ```
 npm test
