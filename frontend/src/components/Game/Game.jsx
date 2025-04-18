@@ -100,7 +100,7 @@ export default function Game() {
         name,
         attempts,
         time: elapsedTime,
-        wordLength,
+        targetWord,
         allowDuplicates,
       }),
     })
